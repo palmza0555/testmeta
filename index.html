@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="th">
+$ ls -al ~/.ssh
+
+<head>
+    <meta charset="UTF-8" />
+    <title>สุ่มมุกเสี่ยวจีบสาว</title>
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif, Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd6e8, #ffb3c6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #d63384;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #d63384;
+        }
+
+        #joke {
+            font-size: 1.6rem;
+            min-height: 100px;
+            margin: 2rem 0;
+            padding: 0 20px;
+            color: #4a0a53;
+            background: rgba(255, 182, 193, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+            line-height: 1.5;
+            transition: all 0.4s ease;
+            max-width: 500px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 20px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #ff6fb5, #ff2d95);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 6px 15px rgba(255, 45, 149, 0.7);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: #cc7a00;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>มุกตลกจริงๆ</h1>
+    <div id="joke">กดปุ่มสิ...</div>
+    <button onclick="showPickupLine()">สุ่มมุก5บาท</button>
+
+    <script>
+        const pickupLines = [
+            "ถึงเราจะไม่ใช่เจ้าชาย… แต่เราก็อยากอยู่ข้างกายเธอเสมอนะ",
+            "ไม่ได้อยากเป็นคนโปรด แค่อยากอยู่ในโหมดรักเธอข้างเดียว",
+            "ไม่ได้มาหลอก แค่มาหยอดน้ำตาลให้หวานใจ",
+            "ไม่ใช่คนเจ้าชู้ แค่อยากรู้เจ้าของเราคือใคร",
+            "ถ้าใจเธอยังว่าง เราขอเข้าไปเป็นคนพิเศษบ้างได้ไหม?",
+            "ไม่มีหรอกแคปชั่น เพราะวันๆ แคปแต่รูปเธอ",
+            "อาตมาเป็นคำเรียกพระ ที่รักจ๊ะเป็นคำเรียกคุณ",
+            "อะไรจะแพง ก็แพงไปเถอะ ขอแค่เธอถูกใจเราก็พอ",
+            "รักของเราอาจไม่หวาน แต่คุณไม่ต้องหารกับใครนะ",
+            "ชอบตื่นเช้าอ่ะ เพราะไม่อยากรักเธอในวันที่สายเกินไป",
+            "ไม่ถูกหวยไม่เป็นไร แค่ถูกใจเธอก็พอ",
+            "ก้าวแรกไม่เป็นไร แต่ถ้าก้าวมาในใจ ไม่ให้ออกแล้วนะ",
+            "ขอจับมือเธอได้ไหม ในฐานะหมอดูก็ได้",
+            "ที่บ้านเธอมีแก้วกี่ใบ เราจะได้เทใจให้หมดเลย",
+            "มิสเทคแปลว่าผิดพลาด แต่ถ้ามิสยูมากๆ จะผิดมั้ย",
+            "เธอไม่ใช่น่าน เธอไม่ใช่เชียงใหม่ แต่เธอใช่เลย",
+            "โควิดมันน่ากลัว อยากไปกักตัวที่ห้องเธอจัง",
+            "ระหว่างแชมพูกับเรา อะไรเข้าตาเธอมากกว่ากัน",
+            "เฮ้อ! หนักใจ เพราะมีคุณอยู่ข้างในทุกวัน",
+            "ช่วงนี้รู้สึกอยากพัก พักคำว่ารูด พูดคำว่ารัก",
+            "มีดที่ว่าคม ยังแค่บาดนิ้ว แต่เธอ so cute มันช่างบาดใจ",
+            "อนาคตของชาติ ไม่รู้อยู่ที่ใคร แต่อนาคตของใจอยู่ที่เธอแน่นอน",
+            "ไม่ถนัดพิเศษใสไข่ ถนัดพิเศษใส่ใจมากกว่า",
+            "กินหมูกระทะจะเจอเนื้อย่าง แต่ถ้าเธอมานั่งข้างๆ เราจะเจอเนื้อคู่",
+            "โสดหรอได้ข่าว เป็นแฟนกับเราป่าว ข่าวจะได้เปลี่ยน",
+            "มีแผนที่ไหม? หลงใจไปชอบเธอ หาทางออกไม่ได้เลย",
+            "อยากเป็นแว่นให้เธอใส่ ถึงไม่ได้อยู่ในใจ แต่อยู่ในสายตา",
+            "ข้อสอบจะมีโจทย์ แต่ถ้าเธอโสดจะมีจีบ",
+            "ที่ชอบใส่เสื้อฟิต เพราะอยากให้รู้ว่าผมชอบคับ",
+            "ทีแรกนึกว่าผมชอบร่วง ที่แท้ก็ผมชอบคุณนี่นา"
+        ];
+
+        let usedIndexes = [];
+
+        function showPickupLine() {
+            if (usedIndexes.length === pickupLines.length) {
+                // รีเซ็ตเมื่อใช้ครบทุกมุกแล้ว
+                usedIndexes = [];
+            }
+
+            let randomIndex;
+
+            // หามุกที่ยังไม่เคยแสดง
+            do {
+                randomIndex = Math.floor(Math.random() * pickupLines.length);
+            } while (usedIndexes.includes(randomIndex));
+
+            usedIndexes.push(randomIndex);
+
+            const jokeEl = document.getElementById("joke");
+            jokeEl.style.opacity = 0;
+            setTimeout(() => {
+                jokeEl.textContent = pickupLines[randomIndex];
+                jokeEl.style.opacity = 1;
+            }, 150);
+        }
+    </script>
+
+</body>
+
+</html>
